@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atri Academy - India's Most Powerful University ERP</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fbbf24 !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff20"><polygon points="0,100 1000,0 1000,100"/></svg>');
+            animation: wave 20s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-1000px); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        /* Feature Cards */
+        .features {
+            padding: 100px 0;
+            background: var(--light-color);
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            height: 100%;
+            border: none;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            background: linear-gradient(135deg, var(--dark-color), #374151);
+            color: white;
+            padding: 100px 0;
+        }
+
+        .dashboard-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Login Portals */
+        .login-grid {
+            padding: 100px 0;
+            background: var(--light-color);
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .feature-card {
+                margin-bottom: 2rem;
+                padding: 2rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-graduation-cap me-2"></i>Atri Academy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portals">Portals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-3 fw-bold animate-on-scroll">Welcome to Atri Academy</h1>
+                    <p class="lead animate-on-scroll">India's Most Powerful University ERP System with 100+ Features</p>
+                    <div class="animate-on-scroll" style="animation-delay: 0.4s;">
+                        <a href="#portals" class="btn btn-light btn-lg me-3 px-5 py-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login Now
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg px-5 py-3">
+                            <i class="fas fa-rocket me-2"></i>Explore Features
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="text-center mb-5 animate-on-scroll">
+                <h2 class="display-4 fw-bold text-dark mb-4">Complete University Management</h2>
+                <p class="lead text-muted">200+ Features | Real-time Analytics | AI Powered | Mobile Responsive</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>Online Admission</h4>
+                        <p>Complete admission process with AI document verification, payment gateway & merit list generation</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Online Result</h4>
+                        <p>Real-time result publishing, grade cards, transcripts, semester-wise performance analytics</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <h4>Fee Management</h4>
+                        <p>UPI, Card, Netbanking payments with auto receipts, installment plans & fee reminders</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>3 Login Portals</h4>
+                        <p>Separate portals for Students, Teachers & Parents with role-based dashboards</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h4>Admin Dashboard</h4>
+                        <p>Complete ERP with 100+ analytics widgets, real-time monitoring & AI insights</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h4>Attendance System</h4>
+                        <p>Biometric, facial recognition, mobile app check-in with 99.9% accuracy</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h4>Live Classes</h4>
+                        <p>4K streaming, screen sharing, recording, chat, breakout rooms & attendance tracking</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h4>Digital ID Cards</h4>
+                        <p>QR code enabled, NFC enabled, real-time status update digital student cards</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section id="dashboard" class="dashboard-preview">
+        <div class="container">
+            <div class="text-center mb-5 animate-on-scroll">
+                <h2 class="display-4 fw-bold mb-4">Admin Dashboard Preview</h2>
+                <p class="lead">Real-time Analytics | AI Insights | 100+ Widgets</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="dashboard-card animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mb-1">25,847</h3>
+                                <p class="mb-0">Total Students</p>
+                            </div>
+                            <i class="fas fa-users fa-2x opacity-75"></i>
+                        </div>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-success" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="dashboard-card animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mb-1">₹4.2 Cr</h3>
+                                <p class="mb-0">Total Revenue</p>
+                            </div>
+                            <i class="fas fa-rupee-sign fa-2x opacity-75"></i>
+                        </div>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-primary" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="dashboard-card animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mb-1">98.7%</h3>
+                                <p class="mb-0">Attendance</p>
+                            </div>
+                            <i class="fas fa-calendar-check fa-2x opacity-75"></i>
+                        </div>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 98%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="dashboard-card animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mb-1">1,247</h3>
+                                <p class="mb-0">Live Classes</p>
+                            </div>
+                            <i class="fas fa-video fa-2x opacity-75"></i>
+                        </div>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-info" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Portals -->
+    <section id="portals" class="login-grid">
+        <div class="container">
+            <div class="text-center mb-5 animate-on-scroll">
+                <h2 class="display-4 fw-bold text-dark mb-4">Secure Login Portals</h2>
+                <p class="lead text-muted">2-Factor Authentication | Role-Based Access | Session Management</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <a href="#" class="text-decoration-none">
+                        <div class="login-card animate-on-scroll">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-user-graduate fa-4x text-primary mb-3"></i>
+                                <h4>Student Portal</h4>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Results & Marks</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Fee Payment</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Attendance</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Live Classes</li>
+                            </ul>
+                            <button class="btn btn-primary w-100 mt-3">
+                                <i class="fas fa-sign-in-alt me-2"></i>Student Login
+                            </button>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <a href="#" class="text-decoration-none">
+                        <div class="login-card animate-on-scroll">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-chalkboard-teacher fa-4x text-success mb-3"></i>
+                                <h4>Teacher Portal</h4>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Mark Entry</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Attendance</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Live Classes</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Student Data</li>
+                            </ul>
+                            <button class="btn btn-success w-100 mt-3">
+                                <i class="fas fa-sign-in-alt me-2"></i>Teacher Login
+                            </button>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <a href="#" class="text-decoration-none">
+                        <div class="login-card animate-on-scroll">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-user-friends fa-4x text-warning mb-3"></i>
+                                <h4>Parent Portal</h4>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Child Progress</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Fee Status</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Attendance</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Reports</li>
+                            </ul>
+                            <button class="btn btn-warning w-100 mt-3">
+                                <i class="fas fa-sign-in-alt me-2"></i>Parent Login
+                            </button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="text-center mb-5 animate-on-scroll">
+                <h2 class="display-4 fw-bold mb-4">Ready to Transform Your Institute?</h2>
+                <p class="lead">Contact us for FREE Demo & Custom Implementation</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-transparent text-center p-4">
+                                <i class="fas fa-phone fa-3x text-primary mb-3"></i>
+                                <h5>+91 98765 43210</h5>
+                                <p>24/7 Support Available</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-transparent text-center p-4">
+                                <i class="fas fa-envelope fa-3x text-success mb-3"></i>
+                                <h5>info@atriacademy.com</h5>
+                                <p>Response within 2 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Atri Academy. India's Most Powerful University ERP System. All rights reserved.</p>
+            <div class="mt-3">
+                <a href="#" class="text-light me-4"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="#" class="text-light me-4"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="#" class="text-light me-4"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="#" class="text-light"><i class="fab fa-instagram fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(30, 58, 138, 0.95)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, #1e3a8a, #3b82f6)';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Counter animation for dashboard
+        function animateCounters() {
+            const counters = document.querySelectorAll('.dashboard-card h3');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/,/g, ''));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when dashboard section is visible
+        const dashboardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    dashboardObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const dashboardSection = document.getElementById('dashboard');
+        if (dashboardSection) {
+            dashboardObserver.observe(dashboardSection);
+        }
+
+        // Particle background for hero
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '4px';
+                particle.style.height = '4px';
+                particle.style.background = 'rgba(255,255,255,0.5)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${2 + Math.random() * 3}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                hero.appendChild(particle);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(180deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+    </script>
+</body>
+</html>
